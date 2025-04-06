@@ -1,12 +1,17 @@
 package app;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RestController
+@Controller
 public class AbstractController {
-    @RequestMapping("/")
-    public String home() {
-        return "Hello world!";
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("testString", "Index");
+        return "index";
     }
+
 }
