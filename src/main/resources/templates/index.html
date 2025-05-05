@@ -5,8 +5,21 @@
         <title th:text="${testString}">Title</title>
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript">
+            $.get("/user", function(data) {
+                $("#user").html(data.name);
+                $(".unauthenticated").hide();
+                $(".authenticated").show();
+            });
+        </script>
     </head>
     <body>
-        <p>hi</p>
+        <div class="container unauthenticated">
+            With GitHub: <a href="/oauth2/authorization/github">click here</a>
+        </div>
+        <div class="container authenticated" style="display:none">
+            Logged in as: <span id="user"></span>
+        </div>
     </body>
 </html>
